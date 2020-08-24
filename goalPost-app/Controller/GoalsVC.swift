@@ -19,12 +19,12 @@ class GoalsVC: UIViewController {
         tableView.delegate = self
     }
     
+//    @IBAction func unwindFromGoalsVC(unwindSegue: UIStoryboardSegue){
+//    }
+    
     @IBAction func addGoalBtnPressed(_ sender: Any) {
-        if tableView.isHidden == true {
-            tableView.isHidden = false
-        }else {
-            tableView.isHidden = true
-        }
+        guard let createGoalVC = storyboard?.instantiateViewController(withIdentifier: "CreateGoalVC") else { return }
+        presentDetail(createGoalVC)
     }
     
 }
