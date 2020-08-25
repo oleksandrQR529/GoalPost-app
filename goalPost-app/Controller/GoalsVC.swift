@@ -18,15 +18,6 @@ class GoalsVC: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
     }
-    
-//    @IBAction func unwindFromGoalsVC(unwindSegue: UIStoryboardSegue){
-//    }
-    
-    @IBAction func addGoalBtnPressed(_ sender: Any) {
-        guard let createGoalVC = storyboard?.instantiateViewController(withIdentifier: "CreateGoalVC") else { return }
-        presentDetail(createGoalVC)
-    }
-    
 }
 
 extension GoalsVC: UITableViewDataSource, UITableViewDelegate {
@@ -45,5 +36,6 @@ extension GoalsVC: UITableViewDataSource, UITableViewDelegate {
         return 1
     }
     
+    @IBAction func unwindFromGoalsVC(unwindSegue: UIStoryboardSegue){}
+    
 }
-
