@@ -401,6 +401,7 @@
                                         </state>
                                         <connections>
                                             <action selector="createGoalBtnPressed:" destination="fGQ-US-fBI" eventType="touchUpInside" id="qh9-VX-yRK"/>
+                                            <segue destination="YcH-cm-8sS" kind="unwind" unwindAction="unwindFromGoalsVCWithUnwindSegue:" id="VQ2-LY-t8g"/>
                                         </connections>
                                     </button>
                                 </subviews>

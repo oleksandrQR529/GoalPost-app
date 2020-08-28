@@ -30,4 +30,8 @@ extension UIViewController {
         dismiss(animated: false, completion: nil)
     }
     
+    func presentSecondaryDetail(_ viewControllerToPresent: UIViewController) {
+        
+    }
+    
 }
