@@ -135,15 +135,36 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Sh-CN-BfJ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GOAL COMPLETE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSQ-IL-zht">
+                                                            <rect key="frame" x="80" y="14.5" width="254" height="41"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="30"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="1" green="0.58431372550000005" blue="0.0" alpha="0.75251498287671237" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="FSQ-IL-zht" firstAttribute="centerX" secondItem="1Sh-CN-BfJ" secondAttribute="centerX" id="6cI-ke-gqw"/>
+                                                        <constraint firstItem="FSQ-IL-zht" firstAttribute="centerY" secondItem="1Sh-CN-BfJ" secondAttribute="centerY" id="iim-J1-YVX"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="dGP-Q4-VRX" secondAttribute="trailing" id="0Jr-sL-xLY"/>
                                                 <constraint firstItem="xeD-bl-m0U" firstAttribute="leading" secondItem="V6c-u0-MFw" secondAttribute="leadingMargin" id="2Rg-lq-9fL"/>
+                                                <constraint firstItem="1Sh-CN-BfJ" firstAttribute="top" secondItem="V6c-u0-MFw" secondAttribute="top" id="7wX-cE-DTZ"/>
                                                 <constraint firstItem="xeD-bl-m0U" firstAttribute="centerY" secondItem="V6c-u0-MFw" secondAttribute="centerY" id="PAu-Re-PDb"/>
+                                                <constraint firstAttribute="trailing" secondItem="1Sh-CN-BfJ" secondAttribute="trailing" id="SwW-OS-xq1"/>
+                                                <constraint firstItem="1Sh-CN-BfJ" firstAttribute="leading" secondItem="V6c-u0-MFw" secondAttribute="leading" id="acd-mo-DJe"/>
                                                 <constraint firstItem="dGP-Q4-VRX" firstAttribute="centerY" secondItem="xeD-bl-m0U" secondAttribute="centerY" id="iBD-r9-ljx"/>
+                                                <constraint firstAttribute="bottom" secondItem="1Sh-CN-BfJ" secondAttribute="bottom" id="sCC-JK-RAk"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="completionView" destination="1Sh-CN-BfJ" id="IUL-V4-2hu"/>
                                             <outlet property="goalDescriptionLbl" destination="zyw-cn-AVy" id="VNi-TO-aqD"/>
                                             <outlet property="goalProgressLbl" destination="dGP-Q4-VRX" id="mfi-6j-WdK"/>
                                             <outlet property="goalTypeLbl" destination="teH-kO-F4H" id="OvW-mb-IMH"/>

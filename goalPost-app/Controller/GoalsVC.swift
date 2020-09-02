@@ -30,18 +30,7 @@ class GoalsVC: UIViewController {
         tableView.reloadData()
         print("Successfully reload data!")
     }
-    
-    func fetchCoreDataObj() {
-        self.fetch { (complete) in
-            if complete {
-                if goals.count >= 1 {
-                    tableView.isHidden = false
-                }else {
-                    tableView.isHidden = true
-                }
-            }
-        }
-    }
+
 }
 
 extension GoalsVC: UITableViewDataSource, UITableViewDelegate {
@@ -54,6 +43,7 @@ extension GoalsVC: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "GoalCell") as? GoalCell else { return UITableViewCell() }
         let goal = goals[indexPath.row]
         cell.configureCell(goal: goal)
+        print("Sell successfylly configurated")
         return cell
     }
     
@@ -76,9 +66,17 @@ extension GoalsVC: UITableViewDataSource, UITableViewDelegate {
             
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
-        deleteAction.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
         
-        return [deleteAction]
+        let addAction = UITableViewRowAction(style: .normal, title: "ADD 1") { (rowAction, indexPath) in
+            self.setProgress(atIndexPath: indexPath)
+            
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
+        
+        deleteAction.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+        addAction.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+        
+        return [deleteAction, addAction]
     }
     
     @IBAction func unwindFromGoalsVC(unwindSegue: UIStoryboardSegue){}
@@ -102,6 +100,18 @@ extension GoalsVC {
         }
     }
     
+    func fetchCoreDataObj() {
+        self.fetch { (complete) in
+            if complete {
+                if goals.count >= 1 {
+                    tableView.isHidden = false
+                }else {
+                    tableView.isHidden = true
+                }
+            }
+        }
+    }
+    
     func removeGoal(atIndexPath indexPath: IndexPath) {
         guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
         
@@ -111,6 +121,25 @@ extension GoalsVC {
             print("Successfully removed goal!")
         }catch{
             debugPrint("Could not remove: \(error.localizedDescription)")
+        }
+    }
+    
+    func setProgress(atIndexPath indexPath: IndexPath) {
+        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
+        
+        let chosenGoal = goals[indexPath.row]
+        
+        if chosenGoal.goalProgress < chosenGoal.goalCompletionValue {
+            chosenGoal.goalProgress += 1
+        }else {
+            return
+        }
+        
+        do{
+            try managedContext.save()
+            print("Successfully set progress!")
+        }catch{
+            debugPrint("Could not set progress: \(error.localizedDescription)")
         }
     }
     
