@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateGoalVC: UIViewController, UITextViewDelegate {
+class CreateGoalVC: UIViewController {
 
     @IBOutlet weak var goalTextView: UITextView?
     @IBOutlet weak var shortTermBtn: UIButton!
@@ -52,7 +52,7 @@ class CreateGoalVC: UIViewController, UITextViewDelegate {
     
 }
 
-extension CreateGoalVC {
+extension CreateGoalVC: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         goalTextView?.text = ""
