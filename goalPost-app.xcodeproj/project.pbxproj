@@ -94,9 +94,9 @@
 			children = (
 				5A379A5324F273A500EB9E18 /* GoalsVC.swift */,
 				5A277B3224F42A310004B4C4 /* CreateGoalVC.swift */,
-				5A2BD06624F54AA800698825 /* FinishGoalVC.swift */,
-				5A35B0B52521DAD500920E7F /* TimePickerVC.swift */,
 				5A35B0B72521E40200920E7F /* DatePickerVC.swift */,
+				5A35B0B52521DAD500920E7F /* TimePickerVC.swift */,
+				5A2BD06624F54AA800698825 /* FinishGoalVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

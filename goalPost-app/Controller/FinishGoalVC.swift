@@ -15,6 +15,7 @@ class FinishGoalVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var pointsTextField: UITextField!
     private var goalDescription: String!
     private var goalType: GoalType!
+    private var goalReminderDate: Date!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,9 +34,10 @@ class FinishGoalVC: UIViewController, UITextFieldDelegate {
 
 extension FinishGoalVC {
     
-    func initData(description: String, type: GoalType) {
+    func initData(description: String, type: GoalType, date: Date) {
         self.goalDescription = description
         self.goalType = type
+        self.goalReminderDate = date
     }
     
     func save(completion: (_ finished: Bool) -> ()) {
@@ -46,6 +48,7 @@ extension FinishGoalVC {
         goal.goalType = goalType.rawValue
         goal.goalCompletionValue = Int32(pointsTextField.text!) ?? 0
         goal.goalProgress = Int32(0)
+        goal.goalReminderDate = goalReminderDate
         
         do{
             try managedContext.save()

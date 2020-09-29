@@ -4,9 +4,10 @@
         <attribute name="goalCompletionValue" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="goalDescription" optional="YES" attributeType="String"/>
         <attribute name="goalProgress" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="goalReminderDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="goalType" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Goal" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Goal" positionX="-63" positionY="-18" width="128" height="118"/>
     </elements>
 </model>

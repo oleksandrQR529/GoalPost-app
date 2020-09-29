@@ -25,6 +25,7 @@ class CreateGoalVC: UIViewController {
     private let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
     
     private var goalType: GoalType?
+    private var goalReminderDate: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +99,7 @@ class CreateGoalVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let finishGoalVC = segue.destination as? FinishGoalVC {
-            finishGoalVC.initData(description: goalTextView?.text ?? "What is your goal?", type: goalType!)
+            finishGoalVC.initData(description: goalTextView?.text ?? "What is your goal?", type: goalType!, date: goalReminderDate!)
         }
     }
     
@@ -112,6 +113,10 @@ extension CreateGoalVC: UITextViewDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+    }
+    
+    func setDate(goalReminderDate date: Date) {
+        self.goalReminderDate = date
     }
     
     @IBAction func unwindFromCreateGoalsVC(unwindSegue: UIStoryboardSegue){}

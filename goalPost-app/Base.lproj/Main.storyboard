@@ -580,7 +580,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="shortTermBtnPressed:" destination="Ywc-4H-Yc9" eventType="touchUpInside" id="H4f-he-x6U"/>
+                                    <segue destination="AMf-0i-NFo" kind="unwind" unwindAction="unwindFromCreateGoalsVCWithUnwindSegue:" id="EVq-so-fK4"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -597,8 +597,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="03O-TU-DEu" secondAttribute="trailing" id="pAW-ag-mAW"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="datePicker" destination="dEN-4P-VOL" id="gEr-Fs-SEm"/>
+                        <outlet property="saveBtn" destination="03O-TU-DEu" id="jud-h1-SS9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t51-iw-Mk9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="AMf-0i-NFo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="546" y="854"/>
         </scene>
@@ -656,7 +661,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="shortTermBtnPressed:" destination="Ywc-4H-Yc9" eventType="touchUpInside" id="uL7-4P-Mjz"/>
+                                    <segue destination="VTX-ac-PTf" kind="unwind" unwindAction="unwindFromCreateGoalsVCWithUnwindSegue:" id="vef-2K-ZRb"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -674,8 +679,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="k82-du-tBF"/>
+                    <connections>
+                        <outlet property="saveBtn" destination="cV6-AC-RFd" id="Pff-0R-vyI"/>
+                        <outlet property="timePicker" destination="hAw-TH-kyn" id="Xkd-OI-oRf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9HD-jE-CpS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="VTX-ac-PTf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1301" y="854"/>
         </scene>

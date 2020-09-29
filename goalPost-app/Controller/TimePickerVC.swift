@@ -9,8 +9,17 @@
 import UIKit
 
 class TimePickerVC: UIViewController {
-
+    
+    @IBOutlet weak var saveBtn: UIButton!
+    @IBOutlet weak var timePicker: UIDatePicker!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let createGoalVC = segue.destination as? CreateGoalVC {
+            createGoalVC.setDate(goalReminderDate: timePicker.date)
+        }
     }
 }
