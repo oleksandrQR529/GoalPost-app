@@ -77,7 +77,7 @@ class CreateGoalVC: UIViewController {
         
         setTimeBtn.isEnabled = true
         
-        selectedController = storyBoard.instantiateViewController(withIdentifier: "DatePickerVC")
+        selectedController = storyBoard.instantiateViewController(withIdentifier: "TimePickerVC")
     }
     
     
@@ -87,7 +87,7 @@ class CreateGoalVC: UIViewController {
         
         setTimeBtn.isEnabled = true
         
-        selectedController = storyBoard.instantiateViewController(withIdentifier: "TimePickerVC")
+        selectedController = storyBoard.instantiateViewController(withIdentifier: "DatePickerVC")
     }
     
     
