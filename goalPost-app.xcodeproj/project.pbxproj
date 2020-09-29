@@ -10,6 +10,8 @@
 		5A277B3324F42A310004B4C4 /* CreateGoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A277B3224F42A310004B4C4 /* CreateGoalVC.swift */; };
 		5A27DF3F24F2D1B9006D2EA4 /* GoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A27DF3E24F2D1B9006D2EA4 /* GoalCell.swift */; };
 		5A2BD06724F54AA800698825 /* FinishGoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2BD06624F54AA800698825 /* FinishGoalVC.swift */; };
+		5A35B0B62521DAD500920E7F /* TimePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A35B0B52521DAD500920E7F /* TimePickerVC.swift */; };
+		5A35B0B82521E40200920E7F /* DatePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A35B0B72521E40200920E7F /* DatePickerVC.swift */; };
 		5A379A5024F273A500EB9E18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A379A4F24F273A500EB9E18 /* AppDelegate.swift */; };
 		5A379A5224F273A500EB9E18 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A379A5124F273A500EB9E18 /* SceneDelegate.swift */; };
 		5A379A5424F273A500EB9E18 /* GoalsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A379A5324F273A500EB9E18 /* GoalsVC.swift */; };
@@ -26,6 +28,8 @@
 		5A277B3224F42A310004B4C4 /* CreateGoalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoalVC.swift; sourceTree = "<group>"; };
 		5A27DF3E24F2D1B9006D2EA4 /* GoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCell.swift; sourceTree = "<group>"; };
 		5A2BD06624F54AA800698825 /* FinishGoalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishGoalVC.swift; sourceTree = "<group>"; };
+		5A35B0B52521DAD500920E7F /* TimePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerVC.swift; sourceTree = "<group>"; };
+		5A35B0B72521E40200920E7F /* DatePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerVC.swift; sourceTree = "<group>"; };
 		5A379A4C24F273A500EB9E18 /* goalPost-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "goalPost-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A379A4F24F273A500EB9E18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A379A5124F273A500EB9E18 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +95,8 @@
 				5A379A5324F273A500EB9E18 /* GoalsVC.swift */,
 				5A277B3224F42A310004B4C4 /* CreateGoalVC.swift */,
 				5A2BD06624F54AA800698825 /* FinishGoalVC.swift */,
+				5A35B0B52521DAD500920E7F /* TimePickerVC.swift */,
+				5A35B0B72521E40200920E7F /* DatePickerVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -201,6 +207,8 @@
 				5A277B3324F42A310004B4C4 /* CreateGoalVC.swift in Sources */,
 				5A27DF3F24F2D1B9006D2EA4 /* GoalCell.swift in Sources */,
 				5A379A5224F273A500EB9E18 /* SceneDelegate.swift in Sources */,
+				5A35B0B82521E40200920E7F /* DatePickerVC.swift in Sources */,
+				5A35B0B62521DAD500920E7F /* TimePickerVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +355,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 58Y54YM5MN;
 				INFOPLIST_FILE = "goalPost-app/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -365,6 +374,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 58Y54YM5MN;
 				INFOPLIST_FILE = "goalPost-app/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
