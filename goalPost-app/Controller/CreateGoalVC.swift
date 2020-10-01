@@ -25,7 +25,7 @@ class CreateGoalVC: UIViewController {
     private let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
     
     private var goalType: GoalType?
-    private var goalReminderDate: Date!
+    private var goalReminderDate: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,12 +35,16 @@ class CreateGoalVC: UIViewController {
     
     private func initUI() {
         termsBtnHint.isHidden = false
-        timeOptionsHint.isHidden = true
         
+        timeOptionsHint.isHidden = true
         timeOptionsStack.isHidden = true
+        
         setTimeBtn.isEnabled = false
+        setTimeBtn.setDeselectedColor()
         
         nextBtn.bindToKeyboard()
+        nextBtn.isEnabled = false
+        nextBtn.setDeselectedColor()
         
         goalTextView?.delegate = self
     }
@@ -55,8 +59,7 @@ class CreateGoalVC: UIViewController {
         
         termsBtnHint.isHidden = true
         setTimeBtn.isEnabled = true
-        
-        nextBtn.isEnabled = true
+        setTimeBtn.setSelectedColor()
     }
     
     @IBAction func longTermBtnPressed(_ sender: Any) {
@@ -68,8 +71,6 @@ class CreateGoalVC: UIViewController {
         termsBtnHint.isHidden = true
         timeOptionsHint.isHidden = false
         timeOptionsStack.isHidden = false
-        
-        nextBtn.isEnabled = true
     }
     
     @IBAction func everyDayBtnPressed(_ sender: Any) {
@@ -77,6 +78,7 @@ class CreateGoalVC: UIViewController {
         everyWeekBtn.setDeselectedColor()
         
         setTimeBtn.isEnabled = true
+        setTimeBtn.setSelectedColor()
         
         selectedController = storyBoard.instantiateViewController(withIdentifier: "TimePickerVC")
     }
@@ -87,6 +89,7 @@ class CreateGoalVC: UIViewController {
         everyDayBtn.setDeselectedColor()
         
         setTimeBtn.isEnabled = true
+        setTimeBtn.setSelectedColor()
         
         selectedController = storyBoard.instantiateViewController(withIdentifier: "DatePickerVC")
     }

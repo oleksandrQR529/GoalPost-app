@@ -19,6 +19,8 @@ class DatePickerVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let createGoalVC = segue.destination as? CreateGoalVC {
             createGoalVC.setDate(goalReminderDate: datePicker.date)
+            createGoalVC.nextBtn.isEnabled = true
+            createGoalVC.nextBtn.setSelectedColor()
         }
     }
 }
