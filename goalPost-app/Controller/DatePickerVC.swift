@@ -10,7 +10,6 @@ import UIKit
 
 class DatePickerVC: UIViewController {
     
-    @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var datePicker: UIDatePicker!
     
     override func viewDidLoad() {

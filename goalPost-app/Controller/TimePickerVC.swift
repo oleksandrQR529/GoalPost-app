@@ -10,7 +10,6 @@ import UIKit
 
 class TimePickerVC: UIViewController {
     
-    @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var timePicker: UIDatePicker!
     
     override func viewDidLoad() {

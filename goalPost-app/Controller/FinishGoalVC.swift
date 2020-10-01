@@ -13,6 +13,7 @@ class FinishGoalVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var createGoalBtn: UIButton!
     @IBOutlet weak var pointsTextField: UITextField!
+    @IBOutlet weak var pointsLbl: UILabel!
     private var goalDescription: String!
     private var goalType: GoalType!
     private var goalReminderDate: Date!
@@ -20,7 +21,18 @@ class FinishGoalVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initUI()
         createGoalBtn.bindToKeyboard()
+    }
+    
+    func initUI() {
+        if goalType.rawValue == "Short-Term" {
+            pointsTextField.isHidden = true
+            pointsLbl.isHidden = true
+        }else{
+            pointsTextField.isHidden = false
+            pointsLbl.isHidden = false
+        }
     }
         
     @IBAction func createGoalBtnPressed(_ sender: Any) {
@@ -46,7 +58,7 @@ extension FinishGoalVC {
         
         goal.goalDescription = goalDescription
         goal.goalType = goalType.rawValue
-        goal.goalCompletionValue = Int32(pointsTextField.text!) ?? 0
+        goal.goalCompletionValue = Int32(pointsTextField.text!) ?? 1
         goal.goalProgress = Int32(0)
         goal.goalReminderDate = goalReminderDate
         

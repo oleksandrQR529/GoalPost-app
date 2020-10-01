@@ -25,7 +25,7 @@ class CreateGoalVC: UIViewController {
     private let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
     
     private var goalType: GoalType?
-    private var goalReminderDate: Date?
+    private var goalReminderDate: Date!
     
     override func viewDidLoad() {
         super.viewDidLoad()
