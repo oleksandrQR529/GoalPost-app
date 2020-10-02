@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 let appDelegate = UIApplication.shared.delegate as? AppDelegate
 
@@ -20,8 +21,7 @@ class GoalsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.dataSource = self
-        tableView.delegate = self
+        initUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,6 +29,13 @@ class GoalsVC: UIViewController {
         fetchCoreDataObj()
         tableView.reloadData()
         print("Successfully reload data!")
+    }
+    
+    func initUI() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        requestNotificationPermission()
     }
 
 }
@@ -43,7 +50,6 @@ extension GoalsVC: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "GoalCell") as? GoalCell else { return UITableViewCell() }
         let goal = goals[indexPath.row]
         cell.configureCell(goal: goal)
-        print("Sell successfylly configurated")
         return cell
     }
     
@@ -78,9 +84,6 @@ extension GoalsVC: UITableViewDataSource, UITableViewDelegate {
         
         return [deleteAction, addAction]
     }
-    
-    @IBAction func unwindFromGoalsVC(unwindSegue: UIStoryboardSegue){}
-    
 }
     
 extension GoalsVC {
@@ -140,6 +143,22 @@ extension GoalsVC {
             print("Successfully set progress!")
         }catch{
             debugPrint("Could not set progress: \(error.localizedDescription)")
+        }
+    }
+    
+    @IBAction func unwindFromGoalsVC(unwindSegue: UIStoryboardSegue){}
+    
+}
+
+extension GoalsVC {
+    
+    func requestNotificationPermission() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+            if success {
+                print("All set!")
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
         }
     }
     
