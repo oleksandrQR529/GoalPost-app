@@ -36,6 +36,7 @@ class GoalsVC: UIViewController {
         tableView.delegate = self
         
         requestNotificationPermission()
+        initNotification()
     }
 
 }
@@ -160,6 +161,24 @@ extension GoalsVC {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func initNotification() {
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Feed the cat"
+        content.subtitle = "It looks hungry"
+        content.sound = UNNotificationSound.default
+
+        // show this notification five seconds from now
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+
+        // choose a random identifier
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+
+        // add our notification request
+        UNUserNotificationCenter.current().add(request)
+        
     }
     
 }
