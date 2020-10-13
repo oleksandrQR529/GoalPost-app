@@ -32,16 +32,4 @@ class GoalCell: UITableViewCell {
             completionView.isHidden = true
         }
     }
-    
-    func fetchStringDate(date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        let timeFormatter = DateFormatter()
-        timeFormatter.timeStyle = .short
-        
-        let stringDate = "\(dateFormatter.string(from: date)) - \(timeFormatter.string(from: date))"
-        
-        return stringDate
-    }
-
 }

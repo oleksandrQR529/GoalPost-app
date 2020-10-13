@@ -36,7 +36,6 @@ class GoalsVC: UIViewController {
         tableView.delegate = self
         
         requestNotificationPermission()
-        initNotification()
     }
 
 }
@@ -51,6 +50,11 @@ extension GoalsVC: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "GoalCell") as? GoalCell else { return UITableViewCell() }
         let goal = goals[indexPath.row]
         cell.configureCell(goal: goal)
+        
+        if goal.goalProgress < goal.goalCompletionValue {
+            initNotification(goal: goal)
+        }
+        
         return cell
     }
     
@@ -163,22 +167,30 @@ extension GoalsVC {
         }
     }
     
-    func initNotification() {
+    func initNotification(goal: Goal) {
         
-        let content = UNMutableNotificationContent()
-        content.title = "Feed the cat"
-        content.subtitle = "It looks hungry"
-        content.sound = UNNotificationSound.default
+        if goal.reminderIsActivated {
+        }else {
+            let content = UNMutableNotificationContent()
+            content.title = goal.goalDescription ?? "What is your goal?"
+            content.subtitle = fetchStringDate(date: goal.goalReminderDate!)
+            content.sound = UNNotificationSound.default
+            content.badge = 1
+            content.categoryIdentifier = "goalPost-notification"
 
-        // show this notification five seconds from now
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+            let uuid = UUID().uuidString
+            
+            // show this notification at selected date
+            let triggerDate = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second,], from: goal.goalReminderDate!)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
 
-        // choose a random identifier
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-
-        // add our notification request
-        UNUserNotificationCenter.current().add(request)
-        
+            // choose a random identifier
+            let request = UNNotificationRequest(identifier: uuid, content: content, trigger: trigger)
+            
+            // add our notification request
+            UNUserNotificationCenter.current().add(request)
+            goal.reminderIsActivated = true
+        }
     }
     
 }

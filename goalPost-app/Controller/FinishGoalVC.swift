@@ -61,6 +61,7 @@ extension FinishGoalVC {
         goal.goalCompletionValue = Int32(pointsTextField.text!) ?? 1
         goal.goalProgress = Int32(0)
         goal.goalReminderDate = goalReminderDate
+        goal.reminderIsActivated = false
         
         do{
             try managedContext.save()
