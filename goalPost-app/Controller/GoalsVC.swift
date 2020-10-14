@@ -16,7 +16,7 @@ class GoalsVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private var goals: [Goal] = []
+    private(set) public static var goals: [Goal] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,6 @@ class GoalsVC: UIViewController {
         super.viewWillAppear(animated)
         fetchCoreDataObj()
         tableView.reloadData()
-        print("Successfully reload data!")
     }
     
     func initUI() {
@@ -43,12 +42,12 @@ class GoalsVC: UIViewController {
 extension GoalsVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return goals.count
+        return GoalsVC.goals.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "GoalCell") as? GoalCell else { return UITableViewCell() }
-        let goal = goals[indexPath.row]
+        let goal = GoalsVC.goals[indexPath.row]
         cell.configureCell(goal: goal)
         
         if goal.goalProgress < goal.goalCompletionValue {
@@ -72,14 +71,14 @@ extension GoalsVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE") { (rowAction, indexPath) in
-            self.removeGoal(atIndexPath: indexPath)
+            self.removeGoal(atIndexPath: indexPath, forGoals: GoalsVC.goals)
             self.fetchCoreDataObj()
             
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         
         let addAction = UITableViewRowAction(style: .normal, title: "ADD 1") { (rowAction, indexPath) in
-            self.setProgress(atIndexPath: indexPath)
+            self.setProgress(atIndexPathRow: indexPath.row, forGoals: GoalsVC.goals)
             
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }
@@ -101,8 +100,7 @@ extension GoalsVC {
         let fetchRequest = NSFetchRequest<Goal>(entityName: "Goal")
         
         do {
-            goals = try managedContext.fetch(fetchRequest)
-            print("Successfully fetch data")
+            GoalsVC.goals = try managedContext.fetch(fetchRequest)
             completion(true)
         }catch {
             debugPrint("Could not fetch\(error.localizedDescription)")
@@ -113,7 +111,7 @@ extension GoalsVC {
     func fetchCoreDataObj() {
         self.fetch { (complete) in
             if complete {
-                if goals.count >= 1 {
+                if GoalsVC.goals.count >= 1 {
                     tableView.isHidden = false
                 }else {
                     tableView.isHidden = true
@@ -122,40 +120,7 @@ extension GoalsVC {
         }
     }
     
-    // MARK: - Delete/Modificate Goal in Core Date
-    
-    func removeGoal(atIndexPath indexPath: IndexPath) {
-        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
-        let notificationCenter = UNUserNotificationCenter.current()
-        
-        managedContext.delete(goals[indexPath.row])
-        notificationCenter.removePendingNotificationRequests(withIdentifiers: [goals[indexPath.row].goalNotificationUuid!])
-        do{
-            try managedContext.save()
-            print("Successfully removed goal!")
-        }catch{
-            debugPrint("Could not remove: \(error.localizedDescription)")
-        }
-    }
-    
-    func setProgress(atIndexPath indexPath: IndexPath) {
-        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
-        
-        let chosenGoal = goals[indexPath.row]
-        
-        if chosenGoal.goalProgress < chosenGoal.goalCompletionValue {
-            chosenGoal.goalProgress += 1
-        }else {
-            return
-        }
-        
-        do{
-            try managedContext.save()
-            print("Successfully set progress!")
-        }catch{
-            debugPrint("Could not set progress: \(error.localizedDescription)")
-        }
-    }
+    // MARK: - Unwind
     
     @IBAction func unwindFromGoalsVC(unwindSegue: UIStoryboardSegue){}
     

@@ -44,6 +44,7 @@ extension UIResponder: UNUserNotificationCenterDelegate {
             content.sound = UNNotificationSound.default
             content.badge = 1
             content.categoryIdentifier = "goalPost-notification"
+            content.accessibilityHint = "0"
 
             let uuid = goal.goalNotificationUuid!
             
@@ -61,15 +62,52 @@ extension UIResponder: UNUserNotificationCenterDelegate {
     }
     
     public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print("did receive called")
+        
+        setProgress(atIndexPathRow: 0, forGoals: GoalsVC.goals)
         
         completionHandler()
     }
     
     public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        print("will present called")
+        
+        setProgress(atIndexPathRow: 0, forGoals: GoalsVC.goals)
 
         completionHandler([.alert, .sound, .badge])
+    }
+    
+    // MARK: - Delete/Modificate Goal in Core Date
+    
+    func removeGoal(atIndexPath indexPath: IndexPath, forGoals goals: [Goal]) {
+        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
+        let notificationCenter = UNUserNotificationCenter.current()
+        
+        managedContext.delete(goals[indexPath.row])
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [goals[indexPath.row].goalNotificationUuid!])
+        do{
+            try managedContext.save()
+            print("Successfully removed goal!")
+        }catch{
+            debugPrint("Could not remove: \(error.localizedDescription)")
+        }
+    }
+    
+    func setProgress(atIndexPathRow indexPathRow: Int, forGoals goals: [Goal]) {
+        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
+        
+        let chosenGoal = goals[indexPathRow]
+        
+        if chosenGoal.goalProgress < chosenGoal.goalCompletionValue {
+            chosenGoal.goalProgress += 1
+        }else {
+            return
+        }
+        
+        do{
+            try managedContext.save()
+            print("Successfully set progress!")
+        }catch{
+            debugPrint("Could not set progress: \(error.localizedDescription)")
+        }
     }
     
 }
