@@ -93,6 +93,8 @@ extension GoalsVC: UITableViewDataSource, UITableViewDelegate {
     
 extension GoalsVC {
     
+    // MARK: - Core Data Fetching support
+    
     func fetch(completion: (_ complete: Bool) ->  ()) {
         guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
         
@@ -120,10 +122,14 @@ extension GoalsVC {
         }
     }
     
+    // MARK: - Delete/Modificate Goal in Core Date
+    
     func removeGoal(atIndexPath indexPath: IndexPath) {
         guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
+        let notificationCenter = UNUserNotificationCenter.current()
         
         managedContext.delete(goals[indexPath.row])
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [goals[indexPath.row].goalNotificationUuid!])
         do{
             try managedContext.save()
             print("Successfully removed goal!")
@@ -152,45 +158,5 @@ extension GoalsVC {
     }
     
     @IBAction func unwindFromGoalsVC(unwindSegue: UIStoryboardSegue){}
-    
-}
-
-extension GoalsVC {
-    
-    func requestNotificationPermission() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-            if success {
-                print("All set!")
-            } else if let error = error {
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    func initNotification(goal: Goal) {
-        
-        if goal.reminderIsActivated {
-        }else {
-            let content = UNMutableNotificationContent()
-            content.title = goal.goalDescription ?? "What is your goal?"
-            content.subtitle = fetchStringDate(date: goal.goalReminderDate!)
-            content.sound = UNNotificationSound.default
-            content.badge = 1
-            content.categoryIdentifier = "goalPost-notification"
-
-            let uuid = UUID().uuidString
-            
-            // show this notification at selected date
-            let triggerDate = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second,], from: goal.goalReminderDate!)
-            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
-
-            // choose a random identifier
-            let request = UNNotificationRequest(identifier: uuid, content: content, trigger: trigger)
-            
-            // add our notification request
-            UNUserNotificationCenter.current().add(request)
-            goal.reminderIsActivated = true
-        }
-    }
     
 }

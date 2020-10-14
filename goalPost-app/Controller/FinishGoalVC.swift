@@ -46,6 +46,8 @@ class FinishGoalVC: UIViewController, UITextFieldDelegate {
 
 extension FinishGoalVC {
     
+    // MARK: - Core Data Saving support
+    
     func initData(description: String, type: GoalType, date: Date) {
         self.goalDescription = description
         self.goalType = type
@@ -56,12 +58,15 @@ extension FinishGoalVC {
         guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
         let goal = Goal(context: managedContext)
         
+        let uuid = UUID().uuidString
+        
         goal.goalDescription = goalDescription
         goal.goalType = goalType.rawValue
         goal.goalCompletionValue = Int32(pointsTextField.text!) ?? 1
         goal.goalProgress = Int32(0)
         goal.goalReminderDate = goalReminderDate
         goal.reminderIsActivated = false
+        goal.goalNotificationUuid = uuid
         
         do{
             try managedContext.save()
@@ -71,6 +76,8 @@ extension FinishGoalVC {
             completion(false)
         }
     }
+    
+    // MARK: - Keyboard hide
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)

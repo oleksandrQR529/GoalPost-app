@@ -3,6 +3,7 @@
     <entity name="Goal" representedClassName="Goal" syncable="YES" codeGenerationType="class">
         <attribute name="goalCompletionValue" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="goalDescription" optional="YES" attributeType="String"/>
+        <attribute name="goalNotificationUuid" optional="YES" attributeType="String"/>
         <attribute name="goalProgress" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="goalReminderDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="goaltravelTimeDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -10,6 +11,6 @@
         <attribute name="reminderIsActivated" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="Goal" positionX="-63" positionY="-18" width="128" height="148"/>
+        <element name="Goal" positionX="-63" positionY="-18" width="128" height="163"/>
     </elements>
 </model>

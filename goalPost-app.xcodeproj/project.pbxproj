@@ -148,11 +148,11 @@
 				5A379A6624F2743C00EB9E18 /* Controller */,
 				5A379A4F24F273A500EB9E18 /* AppDelegate.swift */,
 				5A379A5124F273A500EB9E18 /* SceneDelegate.swift */,
-				5A379A5524F273A500EB9E18 /* Main.storyboard */,
 				5A379A5B24F273A700EB9E18 /* Assets.xcassets */,
+				5A379A5524F273A500EB9E18 /* Main.storyboard */,
 				5A379A5D24F273A700EB9E18 /* LaunchScreen.storyboard */,
-				5A379A6024F273A700EB9E18 /* Info.plist */,
 				5A379A5824F273A500EB9E18 /* goalPost_app.xcdatamodeld */,
+				5A379A6024F273A700EB9E18 /* Info.plist */,
 			);
 			path = "goalPost-app";
 			sourceTree = "<group>";
