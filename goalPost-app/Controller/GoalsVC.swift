@@ -35,6 +35,13 @@ class GoalsVC: UIViewController {
         tableView.delegate = self
         
         requestNotificationPermission()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+
+    }
+    
+    @objc func applicationWillEnterForeground(notification: Notification) {
+        print("Application launched")
     }
 
 }

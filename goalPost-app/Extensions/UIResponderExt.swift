@@ -64,6 +64,7 @@ extension UIResponder: UNUserNotificationCenterDelegate {
     public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
         setProgress(atIndexPathRow: 0, forGoals: GoalsVC.goals)
+        UIApplication.shared.applicationIconBadgeNumber = 0
         
         completionHandler()
     }
@@ -71,6 +72,7 @@ extension UIResponder: UNUserNotificationCenterDelegate {
     public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         setProgress(atIndexPathRow: 0, forGoals: GoalsVC.goals)
+        UIApplication.shared.applicationIconBadgeNumber = 0
 
         completionHandler([.alert, .sound, .badge])
     }
