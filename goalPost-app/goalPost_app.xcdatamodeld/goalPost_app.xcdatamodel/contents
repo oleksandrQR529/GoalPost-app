@@ -10,7 +10,15 @@
         <attribute name="goalType" optional="YES" attributeType="String"/>
         <attribute name="reminderIsActivated" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
+    <entity name="PreGoalReminder" representedClassName="PreGoalReminder" syncable="YES" codeGenerationType="class">
+        <attribute name="preGoalNotificationUuid" optional="YES" attributeType="String"/>
+        <attribute name="preGoalReminderDescription" optional="YES" attributeType="String"/>
+        <attribute name="preGoalReminderIsActivated" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="preGoalReminderSubtitle" optional="YES" attributeType="String"/>
+        <attribute name="preGoalReminderTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
     <elements>
         <element name="Goal" positionX="-63" positionY="-18" width="128" height="163"/>
+        <element name="PreGoalReminder" positionX="-63" positionY="45" width="128" height="118"/>
     </elements>
 </model>

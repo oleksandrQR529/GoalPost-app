@@ -560,6 +560,7 @@
                     <navigationItem key="navigationItem" id="xNT-vU-zI6"/>
                     <connections>
                         <outlet property="createGoalBtn" destination="Wm8-w0-qDK" id="gAP-hB-drZ"/>
+                        <outlet property="goalTravelTimeTextField" destination="dq1-ci-Foi" id="jsF-hY-y2o"/>
                         <outlet property="pointsLbl" destination="V8v-MV-NSV" id="0nb-yb-NgM"/>
                         <outlet property="pointsTextField" destination="AMc-5p-ojO" id="zTI-D0-P17"/>
                     </connections>

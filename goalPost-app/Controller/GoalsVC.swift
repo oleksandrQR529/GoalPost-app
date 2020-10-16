@@ -17,6 +17,7 @@ class GoalsVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private(set) public static var goals: [Goal] = []
+    private(set) public static var preGoalReminders: [PreGoalReminder] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +42,7 @@ class GoalsVC: UIViewController {
     }
     
     @objc func applicationWillEnterForeground(notification: Notification) {
-        print("Application launched")
+        viewWillAppear(true)
     }
 
 }
@@ -79,6 +80,7 @@ extension GoalsVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE") { (rowAction, indexPath) in
             self.removeGoal(atIndexPath: indexPath, forGoals: GoalsVC.goals)
+            self.removePreGoalReminder(atIndexPath: indexPath, forPreGoalReminders: GoalsVC.preGoalReminders)
             self.fetchCoreDataObj()
             
             tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -104,10 +106,13 @@ extension GoalsVC {
     func fetch(completion: (_ complete: Bool) ->  ()) {
         guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
         
-        let fetchRequest = NSFetchRequest<Goal>(entityName: "Goal")
+        let fetchRequest1 = NSFetchRequest<Goal>(entityName: "Goal")
+        let fetchRequest2 = NSFetchRequest<PreGoalReminder>(entityName: "PreGoalReminder")
         
         do {
-            GoalsVC.goals = try managedContext.fetch(fetchRequest)
+            GoalsVC.goals = try managedContext.fetch(fetchRequest1)
+            GoalsVC.preGoalReminders = try managedContext.fetch(fetchRequest2)
+            print("Pre goal reminders - \(GoalsVC.preGoalReminders)")
             completion(true)
         }catch {
             debugPrint("Could not fetch\(error.localizedDescription)")

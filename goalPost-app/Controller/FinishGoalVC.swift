@@ -14,6 +14,7 @@ class FinishGoalVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var createGoalBtn: UIButton!
     @IBOutlet weak var pointsTextField: UITextField!
     @IBOutlet weak var pointsLbl: UILabel!
+    @IBOutlet weak var goalTravelTimeTextField: UITextField!
     private var goalDescription: String!
     private var goalType: GoalType!
     private var goalReminderDate: Date!
@@ -37,9 +38,8 @@ class FinishGoalVC: UIViewController, UITextFieldDelegate {
         
     @IBAction func createGoalBtnPressed(_ sender: Any) {
         //Pass data into Core Date Goal Model
-        self.save { (complete) in
-            print("Completed")
-        }
+        self.save { (complete) in}
+        self.initPreGoalReminderDate(travelTime: goalTravelTimeTextField.text ?? "0", completion: { (complete) in})
     }
     
 }
@@ -70,6 +70,27 @@ extension FinishGoalVC {
         
         do{
             try managedContext.save()
+            completion(true)
+        }catch {
+            debugPrint("Could not save: \(error.localizedDescription)")
+            completion(false)
+        }
+    }
+    
+    func initPreGoalReminderDate(travelTime: String, completion: (_ finished: Bool) -> ()) {
+        guard let manageContext = appDelegate?.persistentContainer.viewContext else {return}
+        let preGoalReminder = PreGoalReminder(context: manageContext)
+        
+        let uuid = UUID().uuidString
+        
+        preGoalReminder.preGoalReminderDescription = "Your goal coming from \(goalTravelTimeTextField.text!) minutes"
+        preGoalReminder.preGoalNotificationUuid = uuid
+        preGoalReminder.preGoalReminderSubtitle = "Don't forget your goal!"
+        preGoalReminder.preGoalReminderIsActivated = false
+        preGoalReminder.preGoalReminderTime = goalReminderDate
+        
+        do{
+            try manageContext.save()
             completion(true)
         }catch {
             debugPrint("Could not save: \(error.localizedDescription)")

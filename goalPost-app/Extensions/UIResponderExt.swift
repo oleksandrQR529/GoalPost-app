@@ -27,7 +27,7 @@ extension UIResponder: UNUserNotificationCenterDelegate {
     func requestNotificationPermission() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
             if success {
-                print("All set!")
+                print("All permission set!")
             } else if let error = error {
                 print(error.localizedDescription)
             }
@@ -64,6 +64,7 @@ extension UIResponder: UNUserNotificationCenterDelegate {
     public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
         setProgress(atIndexPathRow: 0, forGoals: GoalsVC.goals)
+        print("Accessibility hint - \(response.notification.request.content.userInfo)")
         UIApplication.shared.applicationIconBadgeNumber = 0
         
         completionHandler()
@@ -87,7 +88,19 @@ extension UIResponder: UNUserNotificationCenterDelegate {
         notificationCenter.removePendingNotificationRequests(withIdentifiers: [goals[indexPath.row].goalNotificationUuid!])
         do{
             try managedContext.save()
-            print("Successfully removed goal!")
+        }catch{
+            debugPrint("Could not remove: \(error.localizedDescription)")
+        }
+    }
+    
+    func removePreGoalReminder(atIndexPath indexPath: IndexPath, forPreGoalReminders reminders: [PreGoalReminder]) {
+        guard let manageContext = appDelegate?.persistentContainer.viewContext else { return }
+        let notificationCenter = UNUserNotificationCenter.current()
+        
+        manageContext.delete(reminders[indexPath.row])
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [reminders[indexPath.row].preGoalNotificationUuid!])
+        do{
+            try manageContext.save()
         }catch{
             debugPrint("Could not remove: \(error.localizedDescription)")
         }
@@ -106,7 +119,6 @@ extension UIResponder: UNUserNotificationCenterDelegate {
         
         do{
             try managedContext.save()
-            print("Successfully set progress!")
         }catch{
             debugPrint("Could not set progress: \(error.localizedDescription)")
         }
