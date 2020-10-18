@@ -11,6 +11,8 @@ import UserNotifications
 
 extension UIResponder: UNUserNotificationCenterDelegate {
     
+    // MARK: - Date processing block
+    
     func fetchStringDate(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
@@ -20,6 +22,15 @@ extension UIResponder: UNUserNotificationCenterDelegate {
         let stringDate = "\(dateFormatter.string(from: date)) - \(timeFormatter.string(from: date))"
         
         return stringDate
+    }
+    
+    func stripSecondsFromDate(date: Date) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let str = dateFormatter.string(from: date as Date)
+        let newDate = dateFormatter.date(from: str)!
+
+        return newDate
     }
     
     // MARK: - Notifications
@@ -34,94 +45,26 @@ extension UIResponder: UNUserNotificationCenterDelegate {
         }
     }
     
-    func initNotification(goal: Goal) {
-        
-        if goal.reminderIsActivated {
-        }else {
-            let content = UNMutableNotificationContent()
-            content.title = goal.goalDescription ?? "What is your goal?"
-            content.subtitle = fetchStringDate(date: goal.goalReminderDate!)
-            content.sound = UNNotificationSound.default
-            content.badge = 1
-            content.categoryIdentifier = "goalPost-notification"
-            content.accessibilityHint = "0"
-
-            let uuid = goal.goalNotificationUuid!
-            
-            // show this notification at selected date
-            let triggerDate = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second,], from: goal.goalReminderDate!)
-            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
-
-            // choose a random identifier
-            let request = UNNotificationRequest(identifier: uuid, content: content, trigger: trigger)
-            
-            // add our notification request
-            UNUserNotificationCenter.current().add(request)
-            goal.reminderIsActivated = true
-        }
-    }
-    
     public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
-        setProgress(atIndexPathRow: 0, forGoals: GoalsVC.goals)
-        print("Accessibility hint - \(response.notification.request.content.userInfo)")
-        UIApplication.shared.applicationIconBadgeNumber = 0
+        if response.notification.request.content.categoryIdentifier == "goalPost-notification" {
+            UIApplication.shared.applicationIconBadgeNumber = 0
+            NotificationCenter.default.post(name: NSNotification.Name("goalPost-notification"), object: nil, userInfo: ["notificationUuid" : response.notification.request.identifier])
+        }
         
         completionHandler()
     }
     
     public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
-        setProgress(atIndexPathRow: 0, forGoals: GoalsVC.goals)
-        UIApplication.shared.applicationIconBadgeNumber = 0
+        if notification.request.content.categoryIdentifier == "goalPost-notification" {
+            UIApplication.shared.applicationIconBadgeNumber = 0
+            NotificationCenter.default.post(name: NSNotification.Name("goalPost-notification"), object: nil, userInfo: ["notificationUuid" : notification.request.identifier])
+        }else{
+            NotificationCenter.default.post(name: NSNotification.Name("preGoalReminder-notification"), object: nil, userInfo: ["notificationUuid" : notification.request.identifier])
+        }
 
         completionHandler([.alert, .sound, .badge])
-    }
-    
-    // MARK: - Delete/Modificate Goal in Core Date
-    
-    func removeGoal(atIndexPath indexPath: IndexPath, forGoals goals: [Goal]) {
-        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
-        let notificationCenter = UNUserNotificationCenter.current()
-        
-        managedContext.delete(goals[indexPath.row])
-        notificationCenter.removePendingNotificationRequests(withIdentifiers: [goals[indexPath.row].goalNotificationUuid!])
-        do{
-            try managedContext.save()
-        }catch{
-            debugPrint("Could not remove: \(error.localizedDescription)")
-        }
-    }
-    
-    func removePreGoalReminder(atIndexPath indexPath: IndexPath, forPreGoalReminders reminders: [PreGoalReminder]) {
-        guard let manageContext = appDelegate?.persistentContainer.viewContext else { return }
-        let notificationCenter = UNUserNotificationCenter.current()
-        
-        manageContext.delete(reminders[indexPath.row])
-        notificationCenter.removePendingNotificationRequests(withIdentifiers: [reminders[indexPath.row].preGoalNotificationUuid!])
-        do{
-            try manageContext.save()
-        }catch{
-            debugPrint("Could not remove: \(error.localizedDescription)")
-        }
-    }
-    
-    func setProgress(atIndexPathRow indexPathRow: Int, forGoals goals: [Goal]) {
-        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
-        
-        let chosenGoal = goals[indexPathRow]
-        
-        if chosenGoal.goalProgress < chosenGoal.goalCompletionValue {
-            chosenGoal.goalProgress += 1
-        }else {
-            return
-        }
-        
-        do{
-            try managedContext.save()
-        }catch{
-            debugPrint("Could not set progress: \(error.localizedDescription)")
-        }
     }
     
 }

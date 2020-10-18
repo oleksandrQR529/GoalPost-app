@@ -16,9 +16,10 @@
         <attribute name="preGoalReminderIsActivated" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="preGoalReminderSubtitle" optional="YES" attributeType="String"/>
         <attribute name="preGoalReminderTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="preGoalTravelTime" optional="YES" attributeType="String"/>
     </entity>
     <elements>
         <element name="Goal" positionX="-63" positionY="-18" width="128" height="163"/>
-        <element name="PreGoalReminder" positionX="-63" positionY="45" width="128" height="118"/>
+        <element name="PreGoalReminder" positionX="-63" positionY="45" width="128" height="133"/>
     </elements>
 </model>

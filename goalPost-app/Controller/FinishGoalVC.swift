@@ -39,7 +39,10 @@ class FinishGoalVC: UIViewController, UITextFieldDelegate {
     @IBAction func createGoalBtnPressed(_ sender: Any) {
         //Pass data into Core Date Goal Model
         self.save { (complete) in}
-        self.initPreGoalReminderDate(travelTime: goalTravelTimeTextField.text ?? "0", completion: { (complete) in})
+        if goalTravelTimeTextField.text == "" || goalTravelTimeTextField.text == nil {
+            goalTravelTimeTextField.text = "0"
+        }
+        self.initPreGoalReminderDate(travelTime: goalTravelTimeTextField.text!, completion: { (complete) in})
     }
     
 }
@@ -64,7 +67,7 @@ extension FinishGoalVC {
         goal.goalType = goalType.rawValue
         goal.goalCompletionValue = Int32(pointsTextField.text!) ?? 1
         goal.goalProgress = Int32(0)
-        goal.goalReminderDate = goalReminderDate
+        goal.goalReminderDate = stripSecondsFromDate(date: goalReminderDate)
         goal.reminderIsActivated = false
         goal.goalNotificationUuid = uuid
         
@@ -83,11 +86,12 @@ extension FinishGoalVC {
         
         let uuid = UUID().uuidString
         
-        preGoalReminder.preGoalReminderDescription = "Your goal coming from \(goalTravelTimeTextField.text!) minutes"
+        preGoalReminder.preGoalReminderDescription = "Your goal coming from \(travelTime) minutes"
         preGoalReminder.preGoalNotificationUuid = uuid
         preGoalReminder.preGoalReminderSubtitle = "Don't forget your goal!"
         preGoalReminder.preGoalReminderIsActivated = false
-        preGoalReminder.preGoalReminderTime = goalReminderDate
+        preGoalReminder.preGoalReminderTime = stripSecondsFromDate(date: goalReminderDate).addingTimeInterval(-60.0)
+        preGoalReminder.preGoalTravelTime = travelTime
         
         do{
             try manageContext.save()
