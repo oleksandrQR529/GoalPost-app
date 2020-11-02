@@ -262,7 +262,7 @@ extension GoalsVC {
     }
     
     func initPreGoalReminder(preGoalReminder: PreGoalReminder) {
-        if preGoalReminder.preGoalReminderIsActivated || preGoalReminder.goalTravelTime == "0"{
+        if preGoalReminder.preGoalReminderIsActivated || preGoalReminder.preGoalTravelTime == "0"{
         }else {
             let content = UNMutableNotificationContent()
             content.title = preGoalReminder.preGoalReminderDescription!
