@@ -49,7 +49,7 @@ class GoalsVC: UIViewController {
     
     @objc func notificationWillEnterForeground(notification: Notification) {
         for goal in goals {
-            if goal.goalNotificationUuid == notification.userInfo!["notificationUuid"] as! String {
+            if goal.goalNotificationUuid == notification.userInfo!["notificationUuid"] as? String {
                 self.setProgress(goal: goal)
                 self.changeActivationStatusOfReminder(reminder: goal)
             }
@@ -59,7 +59,7 @@ class GoalsVC: UIViewController {
     
     @objc func reminderwillEnterForeground(notification: Notification) {
         for preGoalReminder in preGoalReminders {
-            if preGoalReminder.preGoalNotificationUuid == notification.userInfo!["notificationUuid"] as! String {
+            if preGoalReminder.preGoalNotificationUuid == notification.userInfo!["notificationUuid"] as? String {
                 self.changeActivationStatusOfReminder(reminder: preGoalReminder)
             }
         }
@@ -108,16 +108,16 @@ extension GoalsVC: UITableViewDataSource, UITableViewDelegate {
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         
-        let addAction = UITableViewRowAction(style: .normal, title: "ADD 1") { (rowAction, indexPath) in
-            self.setProgress(goal: self.goals[indexPath.row])
-            
-            tableView.reloadRows(at: [indexPath], with: .automatic)
-        }
+//        let addAction = UITableViewRowAction(style: .normal, title: "ADD 1") { (rowAction, indexPath) in
+//            self.setProgress(goal: self.goals[indexPath.row])
+//
+//            tableView.reloadRows(at: [indexPath], with: .automatic)
+//        }
         
         deleteAction.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
-        addAction.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+        //addAction.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
         
-        return [deleteAction, addAction]
+        return [deleteAction]
     }
 }
     
@@ -262,7 +262,7 @@ extension GoalsVC {
     }
     
     func initPreGoalReminder(preGoalReminder: PreGoalReminder) {
-        if preGoalReminder.preGoalReminderIsActivated || preGoalReminder.preGoalTravelTime == "0"{
+        if preGoalReminder.preGoalReminderIsActivated || preGoalReminder.goalTravelTime == "0"{
         }else {
             let content = UNMutableNotificationContent()
             content.title = preGoalReminder.preGoalReminderDescription!
