@@ -108,14 +108,7 @@ extension GoalsVC: UITableViewDataSource, UITableViewDelegate {
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         
-//        let addAction = UITableViewRowAction(style: .normal, title: "ADD 1") { (rowAction, indexPath) in
-//            self.setProgress(goal: self.goals[indexPath.row])
-//
-//            tableView.reloadRows(at: [indexPath], with: .automatic)
-//        }
-        
         deleteAction.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
-        //addAction.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
         
         return [deleteAction]
     }
