@@ -7,11 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04A010272535BACB00C677CB /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A010262535BACB00C677CB /* UserNotifications.framework */; };
-		04A010292535BACB00C677CB /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A010282535BACB00C677CB /* UserNotificationsUI.framework */; };
-		04A0102C2535BACB00C677CB /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0102B2535BACB00C677CB /* NotificationViewController.swift */; };
-		04A0102F2535BACB00C677CB /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A0102D2535BACB00C677CB /* MainInterface.storyboard */; };
-		04A010332535BACB00C677CB /* goalPostNotification.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 04A010242535BACB00C677CB /* goalPostNotification.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5A277B3324F42A310004B4C4 /* CreateGoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A277B3224F42A310004B4C4 /* CreateGoalVC.swift */; };
 		5A27DF3F24F2D1B9006D2EA4 /* GoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A27DF3E24F2D1B9006D2EA4 /* GoalCell.swift */; };
 		5A2BD06724F54AA800698825 /* FinishGoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2BD06624F54AA800698825 /* FinishGoalVC.swift */; };
@@ -30,16 +25,6 @@
 		5A3CE60024F5085F0007B247 /* UIButtonExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3CE5FF24F5085F0007B247 /* UIButtonExt.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		04A010312535BACB00C677CB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5A379A4424F273A500EB9E18 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 04A010232535BACB00C677CB;
-			remoteInfo = goalPostNotification;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		04A010342535BACB00C677CB /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -47,7 +32,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				04A010332535BACB00C677CB /* goalPostNotification.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,12 +39,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		04A010242535BACB00C677CB /* goalPostNotification.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = goalPostNotification.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A010262535BACB00C677CB /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		04A010282535BACB00C677CB /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
-		04A0102B2535BACB00C677CB /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
-		04A0102E2535BACB00C677CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		04A010302535BACB00C677CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A277B3224F42A310004B4C4 /* CreateGoalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoalVC.swift; sourceTree = "<group>"; };
 		5A27DF3E24F2D1B9006D2EA4 /* GoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCell.swift; sourceTree = "<group>"; };
 		5A2BD06624F54AA800698825 /* FinishGoalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishGoalVC.swift; sourceTree = "<group>"; };
@@ -82,15 +62,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		04A010212535BACB00C677CB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				04A010292535BACB00C677CB /* UserNotificationsUI.framework in Frameworks */,
-				04A010272535BACB00C677CB /* UserNotifications.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5A379A4924F273A500EB9E18 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -110,21 +81,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		04A0102A2535BACB00C677CB /* goalPostNotification */ = {
-			isa = PBXGroup;
-			children = (
-				04A0102B2535BACB00C677CB /* NotificationViewController.swift */,
-				04A0102D2535BACB00C677CB /* MainInterface.storyboard */,
-				04A010302535BACB00C677CB /* Info.plist */,
-			);
-			path = goalPostNotification;
-			sourceTree = "<group>";
-		};
 		5A379A4324F273A500EB9E18 = {
 			isa = PBXGroup;
 			children = (
 				5A379A4E24F273A500EB9E18 /* goalPost-app */,
-				04A0102A2535BACB00C677CB /* goalPostNotification */,
 				04A010252535BACB00C677CB /* Frameworks */,
 				5A379A4D24F273A500EB9E18 /* Products */,
 			);
@@ -134,7 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				5A379A4C24F273A500EB9E18 /* goalPost-app.app */,
-				04A010242535BACB00C677CB /* goalPostNotification.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -198,23 +157,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		04A010232535BACB00C677CB /* goalPostNotification */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 04A010372535BACB00C677CB /* Build configuration list for PBXNativeTarget "goalPostNotification" */;
-			buildPhases = (
-				04A010202535BACB00C677CB /* Sources */,
-				04A010212535BACB00C677CB /* Frameworks */,
-				04A010222535BACB00C677CB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = goalPostNotification;
-			productName = goalPostNotification;
-			productReference = 04A010242535BACB00C677CB /* goalPostNotification.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		5A379A4B24F273A500EB9E18 /* goalPost-app */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A379A6324F273A700EB9E18 /* Build configuration list for PBXNativeTarget "goalPost-app" */;
@@ -227,7 +169,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				04A010322535BACB00C677CB /* PBXTargetDependency */,
 			);
 			name = "goalPost-app";
 			productName = "goalPost-app";
@@ -244,9 +185,6 @@
 				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = "Саша";
 				TargetAttributes = {
-					04A010232535BACB00C677CB = {
-						CreatedOnToolsVersion = 12.0.1;
-					};
 					5A379A4B24F273A500EB9E18 = {
 						CreatedOnToolsVersion = 11.5;
 					};
@@ -266,20 +204,11 @@
 			projectRoot = "";
 			targets = (
 				5A379A4B24F273A500EB9E18 /* goalPost-app */,
-				04A010232535BACB00C677CB /* goalPostNotification */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		04A010222535BACB00C677CB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				04A0102F2535BACB00C677CB /* MainInterface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5A379A4A24F273A500EB9E18 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -293,14 +222,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		04A010202535BACB00C677CB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				04A0102C2535BACB00C677CB /* NotificationViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5A379A4824F273A500EB9E18 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -323,23 +244,7 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		04A010322535BACB00C677CB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 04A010232535BACB00C677CB /* goalPostNotification */;
-			targetProxy = 04A010312535BACB00C677CB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
-		04A0102D2535BACB00C677CB /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				04A0102E2535BACB00C677CB /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
 		5A379A5524F273A500EB9E18 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -359,48 +264,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		04A010352535BACB00C677CB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 58Y54YM5MN;
-				INFOPLIST_FILE = goalPostNotification/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Sasha.goalPost-app.goalPostNotification";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		04A010362535BACB00C677CB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 58Y54YM5MN;
-				INFOPLIST_FILE = goalPostNotification/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Sasha.goalPost-app.goalPostNotification";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		5A379A6124F273A700EB9E18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -518,8 +381,8 @@
 		5A379A6424F273A700EB9E18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 58Y54YM5MN;
 				INFOPLIST_FILE = "goalPost-app/Info.plist";
@@ -530,6 +393,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Sasha.goalPost-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -538,8 +402,8 @@
 		5A379A6524F273A700EB9E18 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 58Y54YM5MN;
 				INFOPLIST_FILE = "goalPost-app/Info.plist";
@@ -550,6 +414,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Sasha.goalPost-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -558,15 +423,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		04A010372535BACB00C677CB /* Build configuration list for PBXNativeTarget "goalPostNotification" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				04A010352535BACB00C677CB /* Debug */,
-				04A010362535BACB00C677CB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		5A379A4724F273A500EB9E18 /* Build configuration list for PBXProject "goalPost-app" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
