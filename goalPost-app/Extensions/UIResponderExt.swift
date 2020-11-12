@@ -51,7 +51,7 @@ extension UIResponder: UNUserNotificationCenterDelegate {
             UIApplication.shared.applicationIconBadgeNumber = 0
             NotificationCenter.default.post(name: NSNotification.Name("goalPost-notification"), object: nil, userInfo: ["notificationUuid" : response.notification.request.identifier])
         }
-        
+    
         completionHandler()
     }
     

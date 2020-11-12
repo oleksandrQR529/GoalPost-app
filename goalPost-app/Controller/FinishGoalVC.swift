@@ -85,7 +85,7 @@ extension FinishGoalVC {
         let preGoalReminder = PreGoalReminder(context: manageContext)
         
         let uuid = UUID().uuidString
-        
+    
         preGoalReminder.preGoalReminderDescription = "Your goal coming from \(travelTime) minutes"
         preGoalReminder.preGoalNotificationUuid = uuid
         preGoalReminder.preGoalReminderSubtitle = "Don't forget your goal!"
