@@ -150,7 +150,7 @@ extension GoalsVC {
     
     @IBAction func unwindFromGoalsVC(unwindSegue: UIStoryboardSegue){}
     
-    // MARK: - Delete/Modificate Goal in Core Date
+    // MARK: - Delete/Modificate Goal in Core Data
     
     func removeGoal(goal: Goal) {
         guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
