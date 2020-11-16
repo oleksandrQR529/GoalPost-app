@@ -90,7 +90,7 @@ extension FinishGoalVC {
         preGoalReminder.preGoalNotificationUuid = uuid
         preGoalReminder.preGoalReminderSubtitle = "Don't forget your goal!"
         preGoalReminder.preGoalReminderIsActivated = false
-        preGoalReminder.preGoalReminderTime = stripSecondsFromDate(date: goalReminderDate).addingTimeInterval(-60.0)
+        preGoalReminder.preGoalReminderTime = stripSecondsFromDate(date: goalReminderDate).addingTimeInterval(-Double(travelTime)! * 60.0)
         preGoalReminder.preGoalTravelTime = travelTime
         
         do{
