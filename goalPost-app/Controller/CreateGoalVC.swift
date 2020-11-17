@@ -60,6 +60,7 @@ class CreateGoalVC: UIViewController {
         termsBtnHint.isHidden = true
         setTimeBtn.isEnabled = true
         setTimeBtn.setSelectedColor()
+        self.viewDidLoad()
     }
     
     @IBAction func longTermBtnPressed(_ sender: Any) {
